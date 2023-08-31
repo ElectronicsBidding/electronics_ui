@@ -1,0 +1,134 @@
+.description {
+    color: var(--primary);
+    line-height: 30px;
+    width: 80%;
+    font-size: 20px;
+}
+
+.hero__wrapper {
+    display: flex;
+    justify-content: space-between;
+}
+
+.hero__content, .hero__img {
+    width: 50%;
+}
+
+/* .hero__img {
+    margin-top: 10px;
+} */
+
+.hero__img__img {
+    width: 80%;
+    margin-top: 5%;
+}
+
+.hero__content {
+    margin-left: 10%;    
+    margin-top: 5%;
+}
+
+.hero__content h2{
+    font-size: 75px;
+    color: var(--primary);
+}
+
+.hero__content .sm-highlight {
+    color: var(--secondary);
+}
+
+.hero__content .highlight {
+    color: var(--secondary);
+}
+
+.hero__statstics {
+    display: flex;
+    justify-content: space-between;
+    width: 70%;
+    flex-wrap: wrap;
+}
+
+.hero__statstics .stat__content h2{
+    font-size: 40px;
+    color: var(--primary);
+
+}
+.hero__statstics .stat__content p{
+    font-size: 25px;
+    color: var(--secondary);
+
+}
+
+.hero__btns {
+    margin-top: 40px;
+    display: flex;
+    align-items: center;
+    column-gap: 4rem;
+}
+
+.primary__btn, .secondary__btn {
+    padding: .7rem 1.5rem;
+    border: none;
+    outline: none;
+    color: #fff;
+    border-radius: 0.4rem;
+    cursor: pointer;
+    font-size: 20px;
+}
+
+.primary__btn{
+    background: var(--primary);
+    border: 2px solid var(--primary);
+}
+
+.primary__btn:hover{
+    background: var(--white);
+    color: var(--secondary);
+    border: 2px solid var(--secondary);
+    transition: 0.2s ease-in-out;
+}
+
+.secondary__btn {
+    background: var(--white);
+    color: var(--secondary);
+    border: 2px solid var(--secondary);
+}
+
+.secondary__btn:hover {
+    background: var(--secondary);
+    color: var(--white);
+    transition: 0.2s ease-in-out;
+    border: 2px solid var(--secondary);
+}
+
+@media (max-width:600px) {
+    .hero__wrapper {
+        display: flex;
+        justify-content: space-between;
+        flex-direction: column;
+    }
+}
+
+.hero__img__img {
+    animation-name: infiniteupdown;
+    animation-duration: 3s;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease;
+    transition: all .3s;
+}
+
+@keyframes infiniteupdown {
+
+    0% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-40px);
+    }
+
+    100% {
+        transform: translateY(0px);
+    }
+    
+}
