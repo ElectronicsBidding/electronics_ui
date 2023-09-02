@@ -1,13 +1,10 @@
 import React from "react";
 import "./hero.css";
 import hero from "../../assets/images/hero.svg";
-import Head from "../../pages/Head";
 
 const Hero = () => {
   return (
     <>
-      <Head />
-
       <section className="hero__section">
         <div>
           <div className="hero__wrapper">

@@ -18,8 +18,8 @@ const Navbar = ({ toggle }) => {
         </NavLink>
         <Bars onClick={toggle}/>
         <NavMenu>
-          <NavLink to='/about' activeStyle>
-            About
+          <NavLink to='/trending_ads' activeStyle>
+            Trending
           </NavLink>
           <NavLink to='/services' activeStyle>
             Services

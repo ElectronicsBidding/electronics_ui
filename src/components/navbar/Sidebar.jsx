@@ -19,7 +19,7 @@ const Sidebar = ({ isOpen, toggle }) => {
 
       <SidebarWrapper>
         <SidebarMenu>
-          <SidebarLink to="/about">About</SidebarLink>
+          <SidebarLink to="/trending_ads">Trending</SidebarLink>
 
           <SidebarLink to="/contact-us">Contact</SidebarLink>
 
