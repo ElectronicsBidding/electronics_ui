@@ -16,7 +16,7 @@ const Products = () => {
       category: 'Category 2',
       price: 50,
       imageUrl: logo,
-      buttonPath: "/user_product",
+      buttonPath: "/bidder_product",
     },
     {
       title: 'Title 3',
@@ -30,7 +30,7 @@ const Products = () => {
       category: 'Category 4',
       price: 50,
       imageUrl: logo,
-      buttonPath: "/user_product",
+      buttonPath: "/bidder_product",
     },
     {
       title: 'Title 5',
@@ -44,7 +44,7 @@ const Products = () => {
       category: 'Category 6',
       price: 50,
       imageUrl: logo,
-      buttonPath: "/user_product",
+      buttonPath: "/bidder_product",
     },
     {
       title: 'Title 7',

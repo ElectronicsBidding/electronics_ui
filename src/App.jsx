@@ -10,6 +10,7 @@ import UserProductView from "./pages/UserProductView";
 import Signup from './components/auth/Signup';
 import Login from './components/auth/Login';
 import Trending from './pages/Trending';
+import ProfileView from './pages/ProfileView';
 
 function App() {
   return (
@@ -19,8 +20,9 @@ function App() {
         <Route path='/trending_ads' element={<Trending/>} />
         <Route path='/bidder_product' element={<BidderProductView />} />
         <Route path='/user_product' element={<UserProductView />} />
-        <Route path='/login' element={<Login/>} />
-        <Route path='/signup' element={<Signup/>} />
+        <Route path='/login' element={<Login />} />
+        <Route path='/signup' element={<Signup />} />
+        <Route path='/profile' element={<ProfileView />} />
       </Routes>
     </Router>
   );

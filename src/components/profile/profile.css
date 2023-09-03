@@ -1,0 +1,58 @@
+.profile__container {
+    display: flex;
+    justify-content: space-between;
+    margin: 5%;
+}
+
+.profile__details{
+    width:700px;
+    height: 750px;
+    background-color: var(--white);
+    border-radius: 20px;
+    color: var(--primary);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+.profile__info h2{
+   margin-top: 10px;
+   text-align: center;
+}
+
+
+.ads__post{
+    width:1000px;
+    height: auto;
+    background-color: white;
+    border-radius: 20px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+.ads__header {
+    display: flex;
+    justify-content: space-between;
+    padding: 2% 5%;
+}
+
+.ads__header h1{
+    color: var(--primary);
+    margin-top: 5px;
+}
+
+.create_btn {
+    padding: 7px 3%;
+    background-color: var(--primary); 
+    color: #fff; 
+    font-size: 20px;
+    text-decoration: none;
+    border-radius: 5px; 
+    height: 52px;
+    border: 1px solid var(--primary);
+    transition: background-color 0.3s, color 0.3s; 
+}
+
+.profile__image{
+    border-radius: 50%;
+    margin-top: 5%;
+    width: 30%;
+    border: 1px solid var(--primary);
+    margin-bottom: 5%;
+}
