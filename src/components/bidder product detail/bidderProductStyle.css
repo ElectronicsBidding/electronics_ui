@@ -6,6 +6,7 @@
 .product-imgs {
   width: 80%;
   object-fit: cover;
+  border: 1px solid var(--primary);
 }
 
 .right__wrapper {
@@ -68,17 +69,19 @@
 
 .leaderboard {
   background-color: var(--white);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+  /* box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3); */
   width: 75%;
   height: 300px;
-  margin-left: 30px;
-  text-align: center;
+  margin-left: 10px;
+  margin-top: 20px;
+  text-align: left;
   border-radius: 20px;
+  line-height: 40px;
 }
 
 .leaderboard h1 {
   font-weight: 400;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
 }
 
 

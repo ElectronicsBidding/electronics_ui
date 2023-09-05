@@ -10,7 +10,8 @@
     background-color: var(--white);
     border-radius: 20px;
     color: var(--primary);
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+    border: 1px solid var(--primary);
+    margin-left: 20px;
 }
 .profile__info h2{
    margin-top: 10px;
@@ -23,7 +24,7 @@
     height: auto;
     background-color: white;
     border-radius: 20px;
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+    border: 1px solid var(--primary);
 }
 
 .ads__header {

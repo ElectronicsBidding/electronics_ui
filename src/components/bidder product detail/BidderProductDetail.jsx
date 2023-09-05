@@ -9,12 +9,10 @@ const BidderProductDetail = () => {
         <div class="left__wrapper">
           <img src={logo} alt="Product Image" class="product-imgs" />
           <div className="leaderboard">
-            <h1>Leading Bidders</h1>
+            <h1>Leading Bidder</h1>
+            <hr />
             <h2>1: Abebe Bikila</h2>
-            <h2>2: Abebe Bikila</h2>
-            <h2>3: Abebe Bikila</h2>
-            <h2>4: Abebe Bikila</h2>
-            <h2>5: Abebe Bikila</h2>
+            <hr />
           </div>
         </div>
 
