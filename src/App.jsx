@@ -11,6 +11,7 @@ import Signup from './components/auth/Signup';
 import Login from './components/auth/Login';
 import Trending from './pages/Trending';
 import ProfileView from './pages/ProfileView';
+import CreateForm from './pages/CreateForm';
 
 function App() {
   return (
@@ -23,6 +24,8 @@ function App() {
         <Route path='/login' element={<Login />} />
         <Route path='/signup' element={<Signup />} />
         <Route path='/profile' element={<ProfileView />} />
+        <Route path='/create_post' element={<CreateForm />} />
+
       </Routes>
     </Router>
   );

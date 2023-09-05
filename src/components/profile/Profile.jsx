@@ -2,8 +2,16 @@ import React from 'react'
 import "./profile.css"
 import Products from "../trending/Products"
 import logo from "../../assets/images/logo.png"
+import { useNavigate } from "react-router-dom";
 
 const Profile = () => {
+  
+  const navigate = useNavigate();
+
+  const handleCreateClick = () => {
+    navigate("/create_post");
+  };
+
   return (
     <>
     <div className="profile__container">
@@ -38,7 +46,7 @@ const Profile = () => {
 
             <div className="ads__header">
                 <h1>Your Ads</h1>
-                <a className="create_btn" href="#">Post</a>
+                <a className="create_btn" onClick={handleCreateClick}>Post</a>
             </div>
             <hr></hr>
 
