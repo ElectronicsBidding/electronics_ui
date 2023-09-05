@@ -10,7 +10,7 @@ const Hero = () => {
           <div className="hero__wrapper">
             <div className="hero__content">
               <div>
-                <p className="sm-highlight">Brand New</p>
+                {/* <p className="sm-highlight">Brand New</p> */}
                 <h2>Meet The Tech</h2>
                 <h2>
                   From The <span className="highlight">Future</span>
