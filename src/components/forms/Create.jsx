@@ -1,9 +1,19 @@
 import React from 'react'
 import "./form.css"
+import Head from "../../pages/Head"
+import { useNavigate } from "react-router-dom";
 
 const Create = () => {
+
+  const navigate = useNavigate();
+
+  const HandleCreateClick = () => {
+    navigate("/profile");
+  }
+
   return (
     <>
+    <Head />
       <div className="form-container" style={{ marginTop: "-10px" }}>
         <div className="form-box">
           <div style={{marginLeft: "20px"}}>
@@ -56,7 +66,7 @@ const Create = () => {
             </div>
   
             <div class="form-input-box">
-              <input type="submit" class="form-input-submit" value="Create Post" style={{width: "96%", fontSize: "23px", height: "60px"}} />
+              <input type="submit" class="form-input-submit" value="Create Post" style={{width: "96%", fontSize: "18px", height: "60px"}} onClick={HandleCreateClick}/>
             </div>
           </div>
 

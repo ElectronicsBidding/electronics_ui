@@ -1,8 +1,8 @@
 import React from 'react'
 import "./profile.css"
-import Products from "../trending/Products"
 import logo from "../../assets/images/logo.png"
 import { useNavigate } from "react-router-dom";
+import BidderProduct from '../bidder products/BidderProduct';
 
 const Profile = () => {
   
@@ -51,7 +51,7 @@ const Profile = () => {
             <hr></hr>
 
             <div style={{marginLeft: "25px"}}>
-                <Products />
+                <BidderProduct />
             </div>
 
         </div>
