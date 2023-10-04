@@ -1,79 +1,55 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { useNavigate } from "react-router-dom";
 import './products.css';
-import logo from "../../assets/images/logo.png"
 
 const Products = () => {
-  const productData = [
-    {
-      title: 'Title 1',
-      category: 'Category 1',
-      price: 50,
-      imageUrl: logo,
-      buttonPath: "/user_product",
-    },
-    {
-      title: 'Title 2',
-      category: 'Category 2',
-      price: 50,
-      imageUrl: logo,
-      buttonPath: "/bidder_product",
-    },
-    {
-      title: 'Title 3',
-      category: 'Category 3',
-      price: 50,
-      imageUrl: logo,
-      buttonPath: "/user_product",
-    },
-    {
-      title: 'Title 4',
-      category: 'Category 4',
-      price: 50,
-      imageUrl: logo,
-      buttonPath: "/bidder_product",
-    },
-    {
-      title: 'Title 5',
-      category: 'Category 5',
-      price: 50,
-      imageUrl: logo,
-      buttonPath: "/user_product",
-    },
-    {
-      title: 'Title 6',
-      category: 'Category 6',
-      price: 50,
-      imageUrl: logo,
-      buttonPath: "/bidder_product",
-    },
-    {
-      title: 'Title 7',
-      category: 'Category 7',
-      price: 50,
-      imageUrl: logo,
-      buttonPath: "/user_product",
-    },
-  ];
+  const navigate = useNavigate();
+
+  const [productData, setProductData] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetch('http://127.0.0.1:3000/products')
+      .then((response) => response.json())
+      .then((data) => {
+        setProductData(data["data"]);
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.error('Error fetching product data:', error);
+      });
+  }, []);
+
+  const handleBidNow = (product) => {
+    navigate("/user_product", {state: {product}});
+    console.log('handleBidNow called with product:', product.name);
+  };
 
   return (
     <section className="product__sec">
       <div className="products">
-        {productData.map((product, index) => (
-          <div className="product__card" key={index}>
-            <div>
-              <img src={product.imageUrl} alt="" className="product__img"/>
-            </div>
-            <div className="product__content">
-              <div className="product__title">{product.title}</div>
-              <div className="product__category">{product.category}</div>
-            </div>
+        {productData.length > 0 ? (
+          productData.map((product, index) => (
+            <div className="product__card" key={index}>
+              <div>
+                <img src={product.image} alt="" className="product__img" />
+              </div>
+              <div className="product__content">
+                <div className="product__title">{product.name}</div>
+                <div className="product__category">{product.category_id}</div>
+              </div>
 
-            <div className="product__box">
-              <div className="product__price">SP: ${product.price}</div>
-              <a className="product__btn" href={product.buttonPath}>Bid Now</a>
+              <div className="product__box">
+                <div className="product__price">SP: ${product.starting_price}</div>
+                <a className="product__btn" 
+                onClick={() => handleBidNow(product)}
+                >Bid Now</a>
+              </div>
             </div>
-          </div>
-        ))}
+          ))
+        ) : (
+          <p>Loading...</p>
+        )}
       </div>
     </section>
   );
