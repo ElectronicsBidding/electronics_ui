@@ -1,59 +1,21 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './products.css';
-import logo from "../../assets/images/logo.png"
 
 const Products = () => {
-  const productData = [
-    {
-      title: 'Title 1',
-      category: 'Category 1',
-      price: 50,
-      imageUrl: logo,
-      buttonPath: "/user_product",
-    },
-    {
-      title: 'Title 2',
-      category: 'Category 2',
-      price: 50,
-      imageUrl: logo,
-      buttonPath: "/bidder_product",
-    },
-    {
-      title: 'Title 3',
-      category: 'Category 3',
-      price: 50,
-      imageUrl: logo,
-      buttonPath: "/user_product",
-    },
-    {
-      title: 'Title 4',
-      category: 'Category 4',
-      price: 50,
-      imageUrl: logo,
-      buttonPath: "/bidder_product",
-    },
-    {
-      title: 'Title 5',
-      category: 'Category 5',
-      price: 50,
-      imageUrl: logo,
-      buttonPath: "/user_product",
-    },
-    {
-      title: 'Title 6',
-      category: 'Category 6',
-      price: 50,
-      imageUrl: logo,
-      buttonPath: "/bidder_product",
-    },
-    {
-      title: 'Title 7',
-      category: 'Category 7',
-      price: 50,
-      imageUrl: logo,
-      buttonPath: "/user_product",
-    },
-  ];
+  const [productData, setProductData] = useState([]);
+
+  useEffect(() => {
+    fetch('http://127.0.0.1:3000/products')
+      .then((response) => response.json())
+      .then((data) => {
+        setProductData(data);
+      })
+      .catch((error) => {
+        console.error('Error fetching product data:', error);
+      });
+      console.log(productData);
+  }, []);
+
 
   return (
     <section className="product__sec">
@@ -61,15 +23,15 @@ const Products = () => {
         {productData.map((product, index) => (
           <div className="product__card" key={index}>
             <div>
-              <img src={product.imageUrl} alt="" className="product__img"/>
+              <img src={product.image} alt="" className="product__img"/>
             </div>
             <div className="product__content">
-              <div className="product__title">{product.title}</div>
-              <div className="product__category">{product.category}</div>
+              <div className="product__title">{product.name}</div>
+              <div className="product__category">{product.category_id}</div>
             </div>
 
             <div className="product__box">
-              <div className="product__price">SP: ${product.price}</div>
+              <div className="product__price">SP: ${product.starting_price}</div>
               <a className="product__btn" href={product.buttonPath}>Bid Now</a>
             </div>
           </div>
