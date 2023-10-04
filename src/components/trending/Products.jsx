@@ -33,7 +33,7 @@ const Products = () => {
 
               <div className="product__box">
                 <div className="product__price">SP: ${product.starting_price}</div>
-                <a className="product__btn" href={product.buttonPath}>Bid Now</a>
+                <a className="product__btn" href={"/user_product"}>Bid Now</a>
               </div>
             </div>
           ))
