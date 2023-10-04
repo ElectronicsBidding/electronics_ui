@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from "react-router-dom";
 import './products.css';
 
 const Products = () => {
+  const navigate = useNavigate();
+
   const [productData, setProductData] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -16,6 +19,11 @@ const Products = () => {
         console.error('Error fetching product data:', error);
       });
   }, []);
+
+  const handleBidNow = (product) => {
+    navigate("/user_product", {state: {product}});
+    console.log('handleBidNow called with product:', product.name);
+  };
 
   return (
     <section className="product__sec">
@@ -33,7 +41,9 @@ const Products = () => {
 
               <div className="product__box">
                 <div className="product__price">SP: ${product.starting_price}</div>
-                <a className="product__btn" href={"/user_product"}>Bid Now</a>
+                <a className="product__btn" 
+                onClick={() => handleBidNow(product)}
+                >Bid Now</a>
               </div>
             </div>
           ))
