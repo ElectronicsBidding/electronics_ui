@@ -1,11 +1,26 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import logo from "../../assets/images/logo.png";
 import "./userProductStyle.css";
 
 const UserProductDetail = () => {
+  const [categoryData, setCategoryData] = useState([]);
+
   const location = useLocation();
   const {product} = location.state || {};
+
+  useEffect(() => {
+    fetch('http://127.0.0.1:3000/categories/'+product.category_id)
+      .then((response) => response.json())
+      .then((data) => {
+        setCategoryData(data["data"].name);
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.error('Error fetching product data:', error);
+      });
+  }, []);
+
   return (
     <>
       <div class="detail__wrapper">
@@ -39,7 +54,7 @@ const UserProductDetail = () => {
                   Available: <span>{product.status}</span>
                 </li>
                 <li>
-                  Category: <span>Electronics</span>
+                  Category: <span>{categoryData}</span>
                 </li>
                 <li>
                   Shipping Area: <span>All over the world</span>

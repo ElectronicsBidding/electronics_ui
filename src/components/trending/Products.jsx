@@ -36,7 +36,6 @@ const Products = () => {
               </div>
               <div className="product__content">
                 <div className="product__title">{product.name}</div>
-                <div className="product__category">{product.category_id}</div>
               </div>
 
               <div className="product__box">
