@@ -1,0 +1,56 @@
+.ad-container {
+    margin-left: 10%;
+}
+
+.ad-container h1{
+    color: var(--primary);
+    margin-top: 3%;
+}
+
+.filter-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 2%;
+}
+
+.search {
+    width: 40%;
+    background:#FFFFFF;
+    color: var(--primary);
+    padding: 7px 60px;
+    border-radius: 8px;
+    font-weight: 500;
+    font-size: 18px;
+    position: relative;
+    left: 0%;
+    border: 2px solid var(--primary);
+}
+
+.search-icon {
+    position: absolute;
+    left: 11%;
+    margin-top: 18px;
+    font-size: 20px;
+}
+.filter {
+    margin-right: 10%;
+}
+
+.search-container {
+    width: 100%;
+}
+
+.category-dropdown {
+    margin-right: 13%;
+    margin-top: 8px;
+}
+
+.category-dropdown select {
+    padding: 10px 25px;
+    width: 150%;
+    border-radius: 8px;
+    border: 2px solid var(--primary);
+    color: var(--primary);
+    background-color: var(--white);
+    font-size: 16px;
+}

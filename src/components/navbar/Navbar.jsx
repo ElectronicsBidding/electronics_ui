@@ -18,23 +18,20 @@ const Navbar = ({ toggle }) => {
         </NavLink>
         <Bars onClick={toggle}/>
         <NavMenu>
-          <NavLink to='/about' activeStyle>
-            About
+        <NavLink to='/' activeStyle>
+            Home
           </NavLink>
-          <NavLink to='/services' activeStyle>
-            Services
+          <NavLink to='/trending_ads' activeStyle>
+            Trending
           </NavLink>
-          <NavLink to='/contact-us' activeStyle>
-            Contact Us
-          </NavLink>
-          <NavLink to='/sign-up' activeStyle>
-            Sign Up
+          <NavLink to='/profile' activeStyle>
+            Profile
           </NavLink>
           {/* Second Nav */}
           {/* <NavBtnLink to='/sign-in'>Sign In</NavBtnLink> */}
         </NavMenu>
         <NavBtn>
-          <NavBtnLink to='/signin'>Sign In</NavBtnLink>
+          <NavBtnLink to='/login'>Login</NavBtnLink>
         </NavBtn>
       </Nav>
     </>

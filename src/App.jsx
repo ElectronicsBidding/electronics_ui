@@ -3,23 +3,31 @@ import './App.css';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import Home from "./pages/Home";
-import About from "./pages/About";
-import Contact from "./pages/Contact";
-import Services from "./pages/Services";
-import SignUp from "./pages/SignUp";
+import BidderProductView from "./pages/BidderProductView";
+import UserProductView from "./pages/UserProductView";
 
-import Head from './pages/Head';
+
+import Signup from './components/auth/Signup';
+import Login from './components/auth/Login';
+import Trending from './pages/Trending';
+import ProfileView from './pages/ProfileView';
+import Create from './components/forms/Create';
+import Edit from './components/forms/Edit';
 
 function App() {
   return (
     <Router>
-      <Head />
       <Routes>
         <Route path='/' exact element={<Home />} />
-        <Route path='/about' element={<About />} />
-        <Route path='/services' element={<Services />} />
-        <Route path='/contact-us' element={<Contact />} />
-        <Route path='/sign-up' element={<SignUp />} />
+        <Route path='/trending_ads' element={<Trending/>} />
+        <Route path='/bidder_product' element={<BidderProductView />} />
+        <Route path='/user_product' element={<UserProductView />} />
+        <Route path='/login' element={<Login />} />
+        <Route path='/signup' element={<Signup />} />
+        <Route path='/profile' element={<ProfileView />} />
+        <Route path='/create_post' element={<Create />} />
+        <Route path='/edit_post' element={<Edit />} />
+
       </Routes>
     </Router>
   );

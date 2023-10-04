@@ -1,8 +1,16 @@
 import React from 'react'
+import Hero from '../components/home/Hero'
+import Head from './Head'
+
 
 const Home = () => {
   return (
-    <div style={{display: "flex", justifyContent: "center", alignItems: "center"}}>Home</div>
+
+    <>
+      <Head />
+      <Hero />
+    </>
+
   )
 }
 

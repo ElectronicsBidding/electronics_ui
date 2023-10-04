@@ -1,0 +1,90 @@
+.bidder__product__sec {
+    padding: 70px 5%;
+    margin-left: 5%;
+}
+
+.bidder__products {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+}
+
+.bidder__products .bidder__product__card {
+    width: 310px;
+    background-color: var(--white);
+    /* box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3); */
+    border-radius: 5px;
+    padding: 5px;
+    margin-bottom: 20px;
+    border: 1px solid var(--primary);
+}
+
+.bidder__products .bidder__product__card .bidder__product__img{
+    height: 200px;
+    width: 100%;
+    object-fit: cover;
+}
+
+.bidder__product__content {
+    display: flex;
+    justify-content: space-between;
+}
+
+.bidder__products .bidder__product__card .bidder__product__category {
+    padding: 5px 20px;
+    opacity: 0.8;
+    color: var(--primary) ;
+    font-size: 15px;
+}
+
+.bidder__products .bidder__product__card .bidder__product__title {
+    font-size: 17px;
+    color: var(--primary);
+    padding: 5px 20px;
+    opacity: 0.8;
+}
+
+.bidder__products .bidder__product__card .bidder__product__box {
+    display: flex;
+    justify-content: space-between;
+    align-items:center;
+    padding: 20px;
+}
+
+.bidder__products .bidder__product__card .bidder__product__box .bidder__product__price {
+    color: var(--secondary);
+    font-size: 23px;
+    font-weight: bold;
+}
+
+.bidder__products .bidder__product__card .bidder__product__box .bidder__product__btn {
+    width: 45%;
+    font-size: 15px;
+    padding: 7px 13px;
+    border: 1px solid var(--secondary);
+    border-radius: 15px;
+    transition: 0.3s ease-in-out;
+    background-color: var(--secondary);
+    color: white;
+    text-decoration: none;
+    text-align: center;
+
+}
+
+.bidder__products .bidder__product__card .bidder__product__box .bidder__product__btn:hover {
+    cursor: pointer;
+    background-color: var(--white);
+    color: var(--secondary);
+}
+
+.bidder__product__icons {
+    font-size: 30px;
+    display: flex;
+    justify-content: space-between;
+    cursor: pointer;
+}
+.edit-icon {
+    color: var(--primary);
+}
+.delete-icon {
+    color: var(--primary);
+}

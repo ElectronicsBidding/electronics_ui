@@ -1,0 +1,109 @@
+.detail__wrapper {
+  margin-left: 10%;
+  display: flex;
+  justify-content: space-between;
+  
+}
+.product-imgs {
+  width: 80%;
+  object-fit: cover;
+}
+
+.right__wrapper {
+  padding: 2rem 1rem;
+  margin-top: 3%;
+}
+.product-title {
+  font-size: 3rem;
+  text-transform: capitalize;
+  font-weight: 700;
+  position: relative;
+  color: #12263a;
+  margin: 1rem 0;
+}
+.product-title::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 4px;
+  width: 80px;
+  background: #12263a;
+}
+
+.starting__price {
+  font-size: 22px;
+}
+
+.starting__price span {
+  color: var(--secondary);
+}
+.product__detail h2 {
+  text-transform: capitalize;
+  color: #12263a;
+  padding-bottom: 0.6rem;
+}
+.product__detail p {
+  font-size: 20px;
+  padding: 0.3rem;
+  opacity: 0.8;
+  width: 70%;
+}
+.product__detail ul {
+  margin: 1rem 0;
+  font-size: 20px;
+}
+.product__detail ul li {
+  margin: 0;
+  list-style: none;
+  background: url(../../assets/images/checked.svg) left center no-repeat;
+  background-size: 18px;
+  padding-left: 1.7rem;
+  margin: 0.4rem 0;
+  font-weight: 600;
+  opacity: 0.9;
+}
+.product__detail ul li span {
+  font-weight: 400;
+}
+
+.bid__btn {
+  display: inline-block;
+  padding: 15px 33.8%;
+  background-color: var(--primary); 
+  color: #fff; 
+  text-decoration: none;
+  border-radius: 5px; 
+  margin-right: 40%;
+  margin-top: 7px;
+  height: 50px;
+  border: 1px solid var(--primary);
+  transition: background-color 0.3s, color 0.3s; 
+}
+
+.bid__btn:hover {
+  background-color: var(--white); 
+  color: var(--primary); 
+  border: 1px solid var(--primary);
+}
+
+.watchlist__btn {
+  display: inline-block;
+  padding: 15px 30%;
+  background-color: var(--primary); 
+  color: #fff; 
+  text-decoration: none;
+  border-radius: 5px; 
+  margin-right: 40%;
+  margin-top: 7px;
+  height: 50px;
+  transition: background-color 0.3s, color 0.3s; 
+  width: 80%;
+  border: 1px solid var(--primary);
+}
+
+.watchlist__btn:hover {
+  background-color: var(--white); 
+  color: var(--primary); 
+  border: 1px solid var(--primary);
+}
