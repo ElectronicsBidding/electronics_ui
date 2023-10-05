@@ -1,44 +1,109 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./auth-style.css";
 
 const Signup = () => {
   const navigate = useNavigate();
+  const [name, setName] = useState();
+  const [phone, setPhone] = useState();
+  const [email, setEmail] = useState();
+  const [password, setPassword] = useState();
+  const [image, setImage] = useState();
+  const [confirm, setConfirm] = useState();
 
   const handleSignInClick = () => {
     navigate("/login");
   };
 
   const handleButtonClick = () => {
-    navigate("/login");
+    fetch("http://10.1.40.87:3000/users", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        payload: {
+          full_name: name, // Use the 'name' state
+          email: email, // Use the 'email' state
+          phone_number: phone, // Use the 'phone' state
+          password: password, // Use the 'password' state
+        },
+      }),
+    })
+      .then((response) => {
+        if (response.status === 200) {
+          // User registration successful, you can redirect to login or do something else
+          navigate("/login");
+        } else {
+          // Handle registration error, maybe show an error message
+          console.error("User registration failed");
+        }
+      })
+      .catch((error) => {
+        // Handle fetch error, e.g., network issue
+        console.error("Error:", error);
+      });
   };
 
   return (
     <>
       <div className="auth-container" style={{ marginTop: "-10px" }}>
         <div className="signup-box">
-          <div style={{marginLeft: "10px"}}>
+          <div style={{ marginLeft: "10px" }}>
             <div className="auth-header">
               <p>Sign Up on Tech On</p>
             </div>
             <div className="auth-input-box">
               <label htmlFor="fullname">Fullname</label>
-              <input type="text" className="auth-input-field" id="fullname" required />
+              <input
+                type="text"
+                className="auth-input-field"
+                id="fullname"
+                required
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+              />
             </div>
             <div className="auth-input-box">
-              <label htmlFor="country">Country</label>
-              <input type="text" className="auth-input-field" id="country" required />
+              <label htmlFor="phone">Phone</label>
+              <input
+                type="text"
+                className="auth-input-field"
+                id="phone"
+                required
+                value={phone}
+                onChange={(e) => setPhone(e.target.value)}
+              />
             </div>
             <div className="auth-input-box">
               <label htmlFor="email">E-Mail</label>
-              <input type="email" className="auth-input-field" id="email" required />
+              <input
+                type="email"
+                className="auth-input-field"
+                id="email"
+                required
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
             </div>
             <div className="auth-input-box">
               <label htmlFor="pass">Password</label>
-              <input type="password" className="auth-input-field" id="pass" required />
+              <input
+                type="password"
+                className="auth-input-field"
+                id="pass"
+                required
+                alue={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
             </div>
             <div className="auth-input-box">
-              <input type="submit" className="auth-input-submit" value="SIGN UP" onClick={handleButtonClick}/>
+              <input
+                type="submit"
+                className="auth-input-submit"
+                value="SIGN UP"
+                onClick={handleButtonClick}
+              />
             </div>
             <div className="auth-bottom">
               <span>Already a Member?</span>

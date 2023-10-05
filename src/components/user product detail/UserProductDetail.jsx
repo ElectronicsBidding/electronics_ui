@@ -48,7 +48,7 @@ const UserProductDetail = () => {
               Consequatur, perferendis eius. Dignissimos, labore suscipit. Unde.
             </p>
 
-            <div style={{ display: "flex", justifyContent: "space-around", marginRight: "30%" }}>
+            <div>
               <ul>
                 <li>
                   Available: <span>{product.status}</span>
