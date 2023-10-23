@@ -41,11 +41,7 @@ const UserProductDetail = () => {
           <div class="product__detail">
             <h2>about this product: </h2>
             <p>
-              {product.description}
-            </p>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              Consequatur, perferendis eius. Dignissimos, labore suscipit. Unde.
+              {product.description}  Lorem ipitoieheioho quod consequuntur maiores.
             </p>
 
             <div>

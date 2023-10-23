@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "../trending/products.css";
+import { FaSearch } from "react-icons/fa";
+import Head from "../../pages/Head";
 
 const Watchlist = () => {
   const navigate = useNavigate();
 
   const [productData, setProductData] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [search, setSearch] = useState("");
 
   useEffect(() => {
     fetch("http://127.0.0.1:3000/products")
@@ -27,11 +29,33 @@ const Watchlist = () => {
 
   return (
     <>
+      <Head />
+      <div className="ad-container">
+        <h1>My Watchlist</h1>
+      </div>
+      <div style={{ marginLeft: "10%", marginTop: "20px" }}>
+        <div className="search-container">
+          <input
+            type="text"
+            className="search"
+            placeholder="Search..."
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+          />
+          <FaSearch className="search-icon" />
+        </div>
+      </div>
       <section className="product__sec">
         <div className="products">
           {productData.length > 0 ? (
-            productData.map((product, index) => (
-              <div className="product__card" key={index}>
+            productData.filter((product) => {
+              return search.toLowerCase() === ""
+                ? product
+                : product.name
+                    .toLowerCase()
+                    .includes(search.toLowerCase(search))
+            }).map((product, index) => (
+              <div className="product__card" key={product.id}>
                 <div>
                   <img src={product.image} alt="" className="product__img" />
                 </div>

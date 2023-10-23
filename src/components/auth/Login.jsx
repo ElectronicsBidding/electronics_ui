@@ -10,31 +10,36 @@ const Login = () => {
     navigate("/signup");
   };
 
-  const handleLogin = async () => {
+  const handleLogin = async (email, password) => {
     try {
-      const response = await fetch("http://10.1.40.87:3000/users", {
+      const response = await fetch("http://127.0.0.1:3000/users/sign_in", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          email,
-          password,
+            email,
+            password,
         }),
       });
-  
+
       if (response.ok) {
         const data = await response.json();
-        navigate("/trending_ads");
+        if (data["success"]){
+          localStorage.setItem("token", data["jwt"]);
+          localStorage.setItem("username", data["user"]["full_name"]);
+          localStorage.setItem("email", data["user"]["email"]);
+          localStorage.setItem("phone_number", data["user"]["phone_number"]);
+          localStorage.setItem("user_id", data["user"]["id"]);
+          navigate("/trending_ads");
+        }
       } else {
         console.error("Authentication failed");
       }
     } catch (error) {
-      // Handle network or other errors
       console.error("Network error:", error);
     }
   };
-  
 
   return (
     <>
@@ -78,7 +83,7 @@ const Login = () => {
                 class="auth-input-submit"
                 value="SIGN IN"
                 onClickCapture={() => {
-                  handleLogin();
+                  handleLogin(email, password);
                 }}
               />
             </div>

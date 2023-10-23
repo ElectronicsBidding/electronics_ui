@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState} from 'react'
 import "./profile.css"
 import logo from "../../assets/images/logo.png"
 import { useNavigate } from "react-router-dom";
@@ -7,6 +7,8 @@ import BidderProduct from '../bidder products/BidderProduct';
 const Profile = () => {
   
   const navigate = useNavigate();
+  const [user, setUser] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   const handleCreateClick = () => {
     navigate("/create_post");
@@ -16,13 +18,13 @@ const Profile = () => {
     <>
     <div className="profile__container">
         <div className="profile__details">
-            <div style={{display: "flex", alignItems: "center", flexDirection: "column"}}>
+            <div style={{display: "flex", alignItems: "center", flexDirection: "column"}} key={user.id}>
                 <img src={logo} alt="" className='profile__image'/>
-                <h1>Betemariam Abenet</h1>
+                <h1>{localStorage.getItem("username")}</h1>
 
                 <div className='profile__info'>
                     <h2>Email</h2>
-                    <h2 style={{fontWeight: "400"}}>betemariam.abenet@bits.com</h2>
+                    <h2 style={{fontWeight: "400"}}>{localStorage.getItem("email")}</h2>
                 </div>
 
                 <div className='profile__info'>
@@ -31,13 +33,8 @@ const Profile = () => {
                 </div>
 
                 <div className='profile__info'>
-                    <h2>Address</h2>
-                    <h2 style={{fontWeight: "400"}}>Bole, Figa Mebrat Hail</h2>
-                </div>
-
-                <div className='profile__info'>
                     <h2>Phone Number</h2>
-                    <h2 style={{fontWeight: "400"}}>0977889977</h2>
+                    <h2 style={{fontWeight: "400"}}>{localStorage.getItem("phone_number")}</h2>
                 </div>
             </div>
         </div>

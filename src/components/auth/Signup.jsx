@@ -16,17 +16,17 @@ const Signup = () => {
   };
 
   const handleButtonClick = () => {
-    fetch("http://10.1.40.87:3000/users", {
+    fetch("http://127.0.0.1:3000/users", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
         payload: {
-          full_name: name, // Use the 'name' state
-          email: email, // Use the 'email' state
-          phone_number: phone, // Use the 'phone' state
-          password: password, // Use the 'password' state
+          full_name: name,
+          email: email, 
+          phone_number: phone, 
+          password: password,
         },
       }),
     })

@@ -10,6 +10,9 @@ import {
 } from './Elements';
 
 const Navbar = ({ toggle }) => {
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+  }
   return (
     <>
       <Nav>
@@ -27,11 +30,16 @@ const Navbar = ({ toggle }) => {
           <NavLink to='/profile' activeStyle>
             Profile
           </NavLink>
-          {/* Second Nav */}
-          {/* <NavBtnLink to='/sign-in'>Sign In</NavBtnLink> */}
+          <NavLink to='/watchlist' activeStyle>
+            Watchlist
+          </NavLink>
         </NavMenu>
         <NavBtn>
-          <NavBtnLink to='/login'>Login</NavBtnLink>
+          {localStorage.getItem("token") ? (
+            <NavBtnLink onClick={handleLogout} to='/login'>Logout</NavBtnLink>
+          ) : (
+            <NavBtnLink to='/login'>Login</NavBtnLink>
+          )}
         </NavBtn>
       </Nav>
     </>
