@@ -7,7 +7,6 @@ const Trending = () => {
   return (
     <>
     <Head />
-    <Ads />
     <Products />
     </>
   )

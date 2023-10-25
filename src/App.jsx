@@ -16,16 +16,24 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path='/' exact element={<Home />} />
-        <Route path='/trending_ads' element={<Trending/>} />
-        <Route path='/bidder_product' element={<BidderProductView />} />
-        <Route path='/user_product' element={<UserProductView />} />
         <Route path='/login' element={<Login />} />
+        <Route path='/' exact element={<Home />} />
         <Route path='/signup' element={<Signup />} />
-        <Route path='/profile' element={<ProfileView />} />
-        <Route path='/create_post' element={<Create />} />
-        <Route path='/edit_post' element={<Edit />} />
-        <Route path='/watchlist' element={<Watchlist />} />
+        <Route path='/trending_ads' element={<Trending/>} />
+        {
+          localStorage.getItem("token") ? (
+           <>
+              <Route path='/bidder_product' element={<BidderProductView />} />
+              <Route path='/user_product' element={<UserProductView />} />
+              <Route path='/profile' element={<ProfileView />} />
+              <Route path='/create_post' element={<Create />} />
+              <Route path='/edit_post' element={<Edit />} />
+              <Route path='/watchlist' element={<Watchlist />} />
+           </>
+          ) : (
+            <Route path='*' element={<Login />}> </Route>
+          )
+        }
       </Routes>
     </Router>
   );

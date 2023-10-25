@@ -16,7 +16,7 @@ const Ads = () => {
       .catch((error) => {
         console.error('Error fetching category data:', error);
       })
-  });
+  }, []);
 
   return (
     <>
@@ -25,7 +25,7 @@ const Ads = () => {
 
         <div className="filter-container">
           <div className="search-container">
-            <input type="text" className="search" placeholder="Search..." />
+            <input type="text" className="search" placeholder="Search..."  />
             <FaSearch className="search-icon" />
           </div>
 
