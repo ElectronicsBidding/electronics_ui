@@ -25,15 +25,28 @@ const BidderProduct = () => {
 
   const handleBidNow = (product) => {
     navigate("/user_product", { state: { product } });
-    console.log("handleBidNow called with product:", product.name);
   };
 
   const handleEditClick = () => {
     navigate("/edit_post");
   };
 
-  const handleDeleteClick = () => {
-    navigate("/profile");
+  const handleDeleteClick = (productId) => {
+    fetch("http://127.0.0.1:3000/products/" + productId, {
+      method: "DELETE",
+    })
+      .then((response) => {
+        if (response.status === 200) {
+          setProductData((prevProducts) =>
+            prevProducts.filter((product) => product.id !== productId)
+          );
+        } else {
+          console.error("Error deleting product");
+        }
+      })
+      .catch((error) => {
+        console.error("Error deleting product:", error);
+      });
   };
 
   return (
@@ -68,7 +81,7 @@ const BidderProduct = () => {
                 />
                 <FaTrash
                   className="delete-icon"
-                  onClick={() => handleDeleteClick(index)}
+                  onClick={() => handleDeleteClick(product.id)}
                 />
               </div>
               <div>
