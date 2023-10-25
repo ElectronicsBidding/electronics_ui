@@ -161,6 +161,7 @@ const Create = () => {
                     id="location"
                     required
                     value={"available"}
+                    style={{marginLeft: "-9%", marginTop: "2%"}}
                     />
                 </div>
               </div>
