@@ -2,12 +2,29 @@ import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import logo from "../../assets/images/logo.png";
 import "./userProductStyle.css";
+import { useWatchlist } from "../watchlist/WatchlistContext";
 
 const UserProductDetail = () => {
   const [categoryData, setCategoryData] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  const { watchlist, dispatch } = useWatchlist();
 
   const location = useLocation();
   const {product} = location.state || {};
+
+  const isItemInWatchlist = watchlist.some((item) => item.id === product.id);
+
+  const handleAddToWatchlist = () => {
+    if (isItemInWatchlist) {
+      // Display an alert message
+      alert("Item is already in the watchlist.");
+    } else {
+      // Add the product to the watchlist
+      dispatch({ type: "ADD_TO_WATCHLIST", product });
+      alert("Item is Added to Watchlist.");
+    }
+  };
 
   useEffect(() => {
     fetch('http://127.0.0.1:3000/categories/'+product.category_id)
@@ -26,8 +43,8 @@ const UserProductDetail = () => {
       <div class="detail__wrapper">
         <div class="left__wrapper">
           <img src={product.image} alt="Product Image" class="product-imgs" />
-          <a className="watchlist__btn" href="#">
-            Cart
+          <a className="watchlist__btn" onClick={handleAddToWatchlist}>
+            Add to Watchlist
           </a>
         </div>
 

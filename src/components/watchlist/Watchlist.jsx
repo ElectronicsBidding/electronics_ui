@@ -1,26 +1,20 @@
-import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useState } from "react";
+import { useWatchlist } from "./WatchlistContext";
 import { FaSearch } from "react-icons/fa";
 import Head from "../../pages/Head";
+import "../trending/products.css";
+import { FaTrash } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 
 const Watchlist = () => {
+  const { watchlist, dispatch } = useWatchlist();
+  const [search, setSearch] = useState("");
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
-  const [productData, setProductData] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [search, setSearch] = useState("");
-
-  useEffect(() => {
-    fetch("http://127.0.0.1:3000/products")
-      .then((response) => response.json())
-      .then((data) => {
-        setProductData(data["data"]);
-        setLoading(false);
-      })
-      .catch((error) => {
-        console.error("Error fetching product data:", error);
-      });
-  }, []);
+  const removeItemFromWatchlist = (productId) => {
+    dispatch({ type: "REMOVE_FROM_WATCHLIST", productId });
+  };
 
   const handleBidNow = (product) => {
     navigate("/user_product", { state: { product } });
@@ -47,37 +41,38 @@ const Watchlist = () => {
       </div>
       <section className="product__sec">
         <div className="products">
-          {productData.length > 0 ? (
-            productData.filter((product) => {
-              return search.toLowerCase() === ""
-                ? product
-                : product.name
-                    .toLowerCase()
-                    .includes(search.toLowerCase(search))
-            }).map((product, index) => (
-              <div className="product__card" key={product.id}>
-                <div>
-                  <img src={product.image} alt="" className="product__img" />
-                </div>
-                <div className="product__content">
-                  <div className="product__title">{product.name}</div>
-                </div>
-
-                <div className="product__box">
-                  <div className="product__price">
-                    SP: ${product.starting_price}
-                  </div>
-                  <a
-                    className="product__btn"
-                    onClick={() => handleBidNow(product)}
-                  >
-                    Bid Now
-                  </a>
-                </div>
-              </div>
-            ))
-          ) : (
+          {loading ? (
             <p>Loading...</p>
+          ) : (
+            watchlist.length === 0 ? (
+              <p>No products</p>
+            ) : (
+              watchlist.map((product) => (
+                <div className="product__card" key={product.id}>
+                  <div>
+                    <img src={product.image} alt="" className="product__img" />
+                  </div>
+                  <div className="product__content">
+                    <div className="product__title">{product.name}</div>
+                  </div>
+                  <div className="product__box">
+                    <div className="product__price">
+                      SP: ${product.starting_price}
+                    </div>
+                    <FaTrash
+                      style={{cursor: "pointer"}}
+                      onClick={() => removeItemFromWatchlist(product.id)}
+                    />
+                    <a
+                      className="product__btn"
+                      onClick={() => handleBidNow(product)}
+                    >
+                      Bid Now
+                    </a>
+                  </div>
+                </div>
+              ))
+            )
           )}
         </div>
       </section>
