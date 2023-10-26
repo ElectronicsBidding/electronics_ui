@@ -7,58 +7,97 @@ import { useWatchlist } from "../watchlist/WatchlistContext";
 const UserProductDetail = () => {
   const [categoryData, setCategoryData] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [biddingPrice, setBiddingPrice] = useState(0);
+  const [newBiddingPrice, setNewBiddingPrice] = useState(0);
+  const [bidderName, setBidderName] = useState("");
+  const [bidderNumber, setBidderNumber] = useState("");
+  const [bidderEmail, setBidderEmail] = useState("");
 
   const { watchlist, dispatch } = useWatchlist();
 
   const location = useLocation();
-  const {product} = location.state || {};
+  const { product } = location.state || {};
 
   const isItemInWatchlist = watchlist.some((item) => item.id === product.id);
 
-  const handleAddToWatchlist = () => {
-    if (isItemInWatchlist) {
-      // Display an alert message
-      alert("Item is already in the watchlist.");
-    } else {
-      // Add the product to the watchlist
-      dispatch({ type: "ADD_TO_WATCHLIST", product });
-      alert("Item is Added to Watchlist.");
-    }
-  };
+  const currentUserID = localStorage.getItem("user_id");
+  const isCurrentUserProductOwner =
+    parseInt(product.seller_id) === parseInt(currentUserID);
+
+  const isNotCurrentUserProductOwner =
+    parseInt(product.seller_id) !== parseInt(currentUserID);
 
   useEffect(() => {
-    fetch('http://127.0.0.1:3000/categories/'+product.category_id)
+    fetch("http://127.0.0.1:3000/categories/" + product.category_id)
       .then((response) => response.json())
       .then((data) => {
         setCategoryData(data["data"].name);
         setLoading(false);
       })
       .catch((error) => {
-        console.error('Error fetching product data:', error);
+        console.error("Error fetching product data:", error);
       });
   }, []);
 
+  useEffect(() => {
+    if (biddingPrice > product.starting_price) {
+      setNewBiddingPrice(biddingPrice);
+    }
+  }, [biddingPrice, product.starting_price]);
+
+  const handleAddToWatchlist = () => {
+    if (isItemInWatchlist) {
+      alert("Item is already in the watchlist.");
+    } else {
+      dispatch({ type: "ADD_TO_WATCHLIST", product });
+      alert("Item is Added to Watchlist.");
+    }
+  };
+
+  const handleBid = () => {
+    if (biddingPrice > product.starting_price) {
+      const newBidderName = localStorage.getItem("username");
+      const newBidderNumber = localStorage.getItem("phone_number");
+      const newBidderEmail = localStorage.getItem("email");
+      const newBidAmount = biddingPrice;
+      setBidderName(newBidderName);
+      setBiddingPrice(newBidAmount);
+
+      localStorage.setItem("product_username", newBidderName);
+      localStorage.setItem("product_phone_number", newBidderNumber);
+      localStorage.setItem("product_email", newBidderEmail);
+      localStorage.setItem("bidding_price", newBidAmount);
+    } else {
+      alert("Your bid must be higher than the starting price.");
+    }
+  };
+
   return (
     <>
-      <div class="detail__wrapper">
-        <div class="left__wrapper">
-          <img src={product.image} alt="Product Image" class="product-imgs" />
+      <div className="detail__wrapper">
+        <div className="left__wrapper">
+          <img
+            src={product.image}
+            alt="Product Image"
+            className="product-imgs"
+          />
           <a className="watchlist__btn" onClick={handleAddToWatchlist}>
             Add to Watchlist
           </a>
         </div>
 
-        <div class="right__wrapper">
-          <h2 class="product-title">{product.name}</h2>
+        <div className="right__wrapper">
+          <h2 className="product-title">{product.name}</h2>
 
-          <p class="starting__price">
+          <p className="starting__price">
             Starting Price: <span>${product.starting_price} (5%)</span>
           </p>
 
-          <div class="product__detail">
+          <div className="product__detail">
             <h2>about this product: </h2>
             <p>
-              {product.description}  Lorem ipitoieheioho quod consequuntur maiores.
+              {product.description} Lorem ipitoieheioho quod consequuntur
+              maiores.
             </p>
 
             <div>
@@ -70,23 +109,59 @@ const UserProductDetail = () => {
                   Category: <span>{categoryData}</span>
                 </li>
                 <li>
-                  Shipping Area: <span>All over the world</span>
+                  Location: <span>{product.location}</span>
                 </li>
                 <li>
-                  Shipping Fee: <span>Free</span>
+                  End of Bidding time: <span>{product.bidding_end_time}</span>
                 </li>
+                {isCurrentUserProductOwner && (
+                  <>
+                  <h4 style={{marginTop: "20px"}}>Highest Bidder so far:</h4>
+                    <li>
+                      <ul className="bidder-info">
+                        <li>
+                          <span>
+                            Username: {localStorage.getItem("product_username")}
+                          </span>
+                        </li>
+                        <li>
+                          <span>
+                            Bid Amount: ${localStorage.getItem("bidding_price")}
+                          </span>
+                        </li>
+                        <li>
+                          <span>
+                            Email: {localStorage.getItem("product_email")}
+                          </span>
+                        </li>
+                        <li>
+                          <span>
+                            Phone Number:{" "}
+                            {localStorage.getItem("product_phone_number")}
+                          </span>
+                        </li>
+                      </ul>
+                    </li>
+                  </>
+                )}
               </ul>
             </div>
 
-            <input
-              type="text"
-              placeholder="Place Your Bidding Price"
-              style={{ paddingLeft: "10px", width: "70%", height: "50px" }}
-            />
-            <br></br>
-            <a className="bid__btn" href="#">
-              Bid
-            </a>
+            {isNotCurrentUserProductOwner && (
+              <>
+                <input
+                  type="text"
+                  placeholder="Place Your Bidding Price"
+                  style={{ paddingLeft: "10px", width: "70%", height: "50px" }}
+                  value={biddingPrice}
+                  onChange={(e) => setBiddingPrice(e.target.value)}
+                />
+                <br></br>
+                <a className="bid__btn" onClick={handleBid}>
+                  Bid
+                </a>
+              </>
+            )}
           </div>
         </div>
       </div>

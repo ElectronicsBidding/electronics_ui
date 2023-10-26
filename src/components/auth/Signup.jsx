@@ -32,15 +32,12 @@ const Signup = () => {
     })
       .then((response) => {
         if (response.status === 200) {
-          // User registration successful, you can redirect to login or do something else
           navigate("/login");
         } else {
-          // Handle registration error, maybe show an error message
           console.error("User registration failed");
         }
       })
       .catch((error) => {
-        // Handle fetch error, e.g., network issue
         console.error("Error:", error);
       });
   };

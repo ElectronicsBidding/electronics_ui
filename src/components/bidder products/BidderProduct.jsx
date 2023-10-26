@@ -75,10 +75,10 @@ const BidderProduct = () => {
             }).map((product, index) => (
             <div className="bidder__product__card" key={product.id}>
               <div className="bidder__product__icons">
-                <LuClipboardEdit
+                {/* <LuClipboardEdit
                   className="edit-icon"
                   onClick={() => handleEditClick(index)}
-                />
+                /> */}
                 <FaTrash
                   className="delete-icon"
                   onClick={() => handleDeleteClick(product.id)}
