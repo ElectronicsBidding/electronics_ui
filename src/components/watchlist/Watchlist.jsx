@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useWatchlist } from "./WatchlistContext";
 import { FaSearch } from "react-icons/fa";
 import Head from "../../pages/Head";
@@ -6,11 +6,23 @@ import "../trending/products.css";
 import { FaTrash } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 
+import Lottie from "lottie-react";
+import bat from "../../assets/images/bat.json";
+import noFiles from "../../assets/images/no-data.json";
+
 const Watchlist = () => {
   const { watchlist, dispatch } = useWatchlist();
   const [search, setSearch] = useState("");
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+
+  const phoneRef = useRef(null);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setLoading(false);
+    }, 20000);
+  }, []);
 
   const removeItemFromWatchlist = (productId) => {
     dispatch({ type: "REMOVE_FROM_WATCHLIST", productId });
@@ -42,10 +54,30 @@ const Watchlist = () => {
       <section className="product__sec">
         <div className="products">
           {loading ? (
-            <p>Loading...</p>
+            <div>
+            <Lottie
+              loop={true}
+              lottieRef={phoneRef}
+              animationData={bat}
+              style={{
+                width: "30%",
+                marginLeft: "30%",
+              }}
+            />
+          </div>
           ) : (
             watchlist.length === 0 ? (
-              <p>No products</p>
+              <div>
+              <Lottie
+                loop={true}
+                lottieRef={phoneRef}
+                animationData={noFiles}
+                style={{
+                  width: "30%",
+                  marginLeft: "30%",
+                }}
+              />
+            </div>
             ) : (
               watchlist.map((product) => (
                 <div className="product__card" key={product.id}>

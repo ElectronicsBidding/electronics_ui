@@ -63,10 +63,15 @@ const UserProductDetail = () => {
       setBidderName(newBidderName);
       setBiddingPrice(newBidAmount);
 
-      localStorage.setItem("product_username", newBidderName);
-      localStorage.setItem("product_phone_number", newBidderNumber);
-      localStorage.setItem("product_email", newBidderEmail);
-      localStorage.setItem("bidding_price", newBidAmount);
+      localStorage.setItem(`product_username_${product.id}`, newBidderName);
+      localStorage.setItem(
+        `product_phone_number_${product.id}`,
+        newBidderNumber
+      );
+      localStorage.setItem(`product_email_${product.id}`, newBidderEmail);
+      localStorage.setItem(`bidding_price_${product.id}`, newBidAmount);
+
+      alert("Bid Transferd successfuly.");
     } else {
       alert("Your bid must be higher than the starting price.");
     }
@@ -116,28 +121,41 @@ const UserProductDetail = () => {
                 </li>
                 {isCurrentUserProductOwner && (
                   <>
-                  <h4 style={{marginTop: "20px"}}>Highest Bidder so far:</h4>
+                    <h4 style={{ marginTop: "20px" }}>
+                      Highest Bidder so far:
+                    </h4>
                     <li>
                       <ul className="bidder-info">
                         <li>
                           <span>
-                            Username: {localStorage.getItem("product_username")}
+                            Username:{" "}
+                            {localStorage.getItem(
+                              `product_username_${product.id}`
+                            )}
                           </span>
                         </li>
                         <li>
                           <span>
-                            Bid Amount: ${localStorage.getItem("bidding_price")}
+                            Bid Amount: $
+                            {localStorage.getItem(
+                              `bidding_price_${product.id}`
+                            )}
                           </span>
                         </li>
                         <li>
                           <span>
-                            Email: {localStorage.getItem("product_email")}
+                            Email:{" "}
+                            {localStorage.getItem(
+                              `product_email_${product.id}`
+                            )}
                           </span>
                         </li>
                         <li>
                           <span>
                             Phone Number:{" "}
-                            {localStorage.getItem("product_phone_number")}
+                            {localStorage.getItem(
+                              `product_phone_number_${product.id}`
+                            )}
                           </span>
                         </li>
                       </ul>

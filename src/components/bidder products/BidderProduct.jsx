@@ -1,8 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "./bidderProduct.css";
 import { FaTrash } from "react-icons/fa";
 import { LuClipboardEdit } from "react-icons/lu";
 import { useNavigate } from "react-router-dom";
+
+import Lottie from "lottie-react";
+import bat from "../../assets/images/bat.json";
 
 const BidderProduct = () => {
   const navigate = useNavigate();
@@ -10,6 +13,14 @@ const BidderProduct = () => {
   const [productData, setProductData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState("");
+
+  const phoneRef = useRef(null);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setLoading(false);
+    }, 20000);
+  }, []);
 
   useEffect(() => {
     fetch("http://127.0.0.1:3000/products/filter/" + localStorage.getItem("user_id"))
@@ -106,7 +117,17 @@ const BidderProduct = () => {
             </div>
             ))
             ) : (
-              <p>Loading...</p>
+              <div>
+              <Lottie
+                loop={true}
+                lottieRef={phoneRef}
+                animationData={bat}
+                style={{
+                  width: "30%",
+                  marginLeft: "30%",
+                }}
+              />
+            </div>
             )}
         </div>
       </section>
